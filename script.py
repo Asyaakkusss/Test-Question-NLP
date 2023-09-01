@@ -1,7 +1,7 @@
 import pandas as pd 
 import re
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
+from nltk.stem.lancaster import LancasterStemmer
 from nltk.tokenize import word_tokenize
 import nltk
 
@@ -53,5 +53,21 @@ stop_words = set(stopwords.words('english'))
 data_frame['title'] = data_frame['title'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
 data_frame['abstract'] = data_frame['abstract'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
 
+#use stemming 
+#stemmer = LancasterStemmer()
+#data_frame['title'] = data_frame['title'].apply(lambda x: [stemmer.stem(word) for word in x])
+#data_frame['abstract'] = data_frame['abstract'].apply(lambda x: [stemmer.stem(word) for word in x])
 
-print(data_frame['title'].iloc[4])
+#sort the tables 
+data_frame['year'] = data_frame['year'].astype(int)
+final_sorted_data = data_frame.sort_values(by='year')
+print(final_sorted_data)
+
+'''
+2. **Natural Language Processing**: Once the data is in a suitable state, employ relevant NLP
+methodologies to generate keywords from the abstracts. Discuss the chosen approach and its
+effectiveness.
+
+For this section, I used TF-IDF and 
+'''
+
