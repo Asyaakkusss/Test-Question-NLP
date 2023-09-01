@@ -4,6 +4,8 @@ from nltk.corpus import stopwords
 from nltk.stem.lancaster import LancasterStemmer
 from nltk.tokenize import word_tokenize
 import nltk
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 nltk.download('stopwords')
 
@@ -45,8 +47,8 @@ data_frame['title'] = data_frame['title'].apply(str.lower)
 data_frame['abstract'] = data_frame['abstract'].apply(str.lower)
 
 #remove punctuation and non-ASCII characters
-data_frame['title'] = data_frame['title'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', re.sub(r'[.,-]', '', x)))
-data_frame['abstract'] = data_frame['abstract'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', re.sub(r'[.,]', '', x)))
+data_frame['title'] = data_frame['title'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', re.sub(r'[.,-:]', '', x)))
+data_frame['abstract'] = data_frame['abstract'].apply(lambda x: re.sub(r'[^\x00-\x7F]+', '', re.sub(r'[.,-:]', '', x)))
 
 #remove stop words 
 stop_words = set(stopwords.words('english'))
@@ -58,16 +60,30 @@ data_frame['abstract'] = data_frame['abstract'].apply(lambda x: ' '.join([word f
 #data_frame['title'] = data_frame['title'].apply(lambda x: [stemmer.stem(word) for word in x])
 #data_frame['abstract'] = data_frame['abstract'].apply(lambda x: [stemmer.stem(word) for word in x])
 
-#sort the tables 
-data_frame['year'] = data_frame['year'].astype(int)
-final_sorted_data = data_frame.sort_values(by='year')
-print(final_sorted_data)
-
 '''
 2. **Natural Language Processing**: Once the data is in a suitable state, employ relevant NLP
 methodologies to generate keywords from the abstracts. Discuss the chosen approach and its
 effectiveness.
 
-For this section, I used TF-IDF and 
+For this section, I used TF-IDF to extract keywords from each abstract after splitting the initial 
+data table up into different years. 
 '''
+grouped = data_frame.groupby('year')
+
+# Create a dictionary of DataFrames, where each key is a unique year
+frames_by_year = {year: group for year, group in grouped}
+
+data_frame_2010 = frames_by_year.get(2010) 
+data_frame_2011 = frames_by_year.get(2011) 
+data_frame_2012 = frames_by_year.get(2012)
+data_frame_2013 = frames_by_year.get(2013) 
+data_frame_2014 = frames_by_year.get(2014) 
+data_frame_2015 = frames_by_year.get(2015) 
+data_frame_2016 = frames_by_year.get(2016) 
+data_frame_2017 = frames_by_year.get(2017) 
+data_frame_2018 = frames_by_year.get(2018) 
+
+
+print(data_frame_2018)
+
 
