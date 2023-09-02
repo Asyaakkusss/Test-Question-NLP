@@ -7,6 +7,7 @@ import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+import networkx as nx
 
 
 nltk.download('stopwords')
