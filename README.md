@@ -54,3 +54,5 @@ visualization, for example, keywords network graph, that clearly illustrates the
 have identified.
 ```
 I used a wordcloud to visualize each of the data clusters. In the first four tiles, there seems to be a lot of keywords that indicate investigation/discovery of problems, such as "addressing", "algorithm", "adapting", "amended", etc. In the last 5 tiles, there are more keywords that indicate progress/applicability and development, such as "achievement", "develop", "achieve", "accelerate", and "absorb". There are also more keywords indicating technical terms and processes. This would make sense since over time these methods would be developed and applied with greater frequency. 
+
+I enjoyed starting this project. Labor Day weekend is going to be quite busy so I may not have much time to get back to it before Tuesday. So far as future directions for this work, there is a major challenge when it comes to consistency of data generation. I also want to take a stab at trying to generate a keywords network graph from this data. Regardless of the outcome, I hope to continue working with this and learning more about NLP by doing in the process. 
