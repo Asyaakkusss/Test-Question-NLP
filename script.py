@@ -5,6 +5,8 @@ from nltk.stem.lancaster import LancasterStemmer
 from nltk.tokenize import word_tokenize
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 
 nltk.download('stopwords')
@@ -83,7 +85,43 @@ data_frame_2016 = frames_by_year.get(2016)
 data_frame_2017 = frames_by_year.get(2017) 
 data_frame_2018 = frames_by_year.get(2018) 
 
+# using TF-IDF to extract keywords 
+vectorization = TfidfVectorizer()
 
-print(data_frame_2018)
+# for 2010
+vectorization.fit(data_frame_2010['abstract'])
+tfidf_2010= vectorization.transform(data_frame_2010['abstract'])
+tfidf_2010_dataframe = tfidf_df = pd.DataFrame(tfidf_2010.toarray(), columns=vectorization.get_feature_names_out())
 
+# for 2011
+vectorization.fit(data_frame_2011['abstract'])
+tfidf_2011 = vectorization.transform(data_frame_2011['abstract'])
+tfidf_2011_dataframe = tfidf_df = pd.DataFrame(tfidf_2011.toarray(), columns=vectorization.get_feature_names_out())
 
+# for 2012
+vectorization.fit(data_frame_2012['abstract'])
+tfidf_2012= vectorization.transform(data_frame_2012['abstract'])
+tfidf_2012_dataframe = tfidf_df = pd.DataFrame(tfidf_2012.toarray(), columns=vectorization.get_feature_names_out())
+
+# for 2013
+vectorization.fit(data_frame_2010['abstract'])
+tfidf_2010= vectorization.transform(data_frame_2010['abstract'])
+tfidf_2010_dataframe = tfidf_df = pd.DataFrame(tfidf_2010.toarray(), columns=vectorization.get_feature_names_out())
+
+# for 2014
+
+# for 2015
+
+# for 2016
+
+# for 2017
+
+# for 2018 
+
+#create a word cloud 
+data_2010 = " ".join(tfidf_2010_dataframe.columns)
+wordcloud2010 = WordCloud(width=400, height=400, background_color = "white").generate(data_2010)
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud2010, interpolation='bilinear')
+plt.axis('off')
+plt.show()
