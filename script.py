@@ -17,21 +17,6 @@ nltk.download('wordnet')
 data = pd.read_csv('C:\\Users\\asyas\\Downloads\\test_question.csv')
 
 #now, we clean the data 
-'''
-1. **Data Cleaning**: Initiate your study by adopting suitable data preprocessing techniques to
-ensure the dataset is clean and accurate for further analysis. Please outline the specific
-methodologies employed and justify your decisions where necessary.
-'''
-
-'''
-What I have done to clean the data: 
-1. Removed the authors column, since it is not very relevant to the task at hand (done)
-2. Removed the month and day from the publication date, leaving only the year (done)
-3. Lowercased all text (done)
-4. Removed punctuation (done)
-5. Removed stop words (done)
-'''
-
 array = data[['title', 'abstract', 'date', 'authors']].values
 
 #convert the array into a dataframe 
@@ -63,14 +48,7 @@ data_frame['abstract'] = data_frame['abstract'].apply(lambda x: ' '.join(word_to
 stemmer = WordNetLemmatizer()
 data_frame['abstract'] = data_frame['abstract'].apply(lambda x: ' '.join([stemmer.lemmatize(word) for word in x.split()]))
 
-'''
-2. **Natural Language Processing**: Once the data is in a suitable state, employ relevant NLP
-methodologies to generate keywords from the abstracts. Discuss the chosen approach and its
-effectiveness.
-
-For this section, I used TF-IDF to extract keywords from each abstract after splitting the initial 
-data table up into different years. 
-'''
+#now for the keyword generation....
 grouped = data_frame.groupby('year')
 
 # Create a dictionary of DataFrames, where each key is a unique year
